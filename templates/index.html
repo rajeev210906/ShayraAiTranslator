@@ -1,0 +1,165 @@
+<!-- index.html -->
+
+<!-- This Ui Is Completely Made By Rajeev Ranjan No Copyrights Just Use it for any Purpose -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ShayraAi Translator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+       .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 20px 20px #89fff3;
+        }
+       .input-field {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+       .select-field {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+       .translate-button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 40%;
+        }
+       .translate-button:hover {
+            background-color: #3e8e41;
+        }
+       .translated-text {
+            font-size: 18px;
+            padding: 20px;
+            border-top: 1px solid #ddd;
+        }
+        /* Add styles for navigation bar */
+       .nav-bar {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+       .nav-bar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+        }
+       .nav-bar a:hover {
+            color: #ccc;
+        }
+        /* Add styles for modal window */
+       .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+       .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+        }
+       .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+       .close:hover,
+       .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Add navigation bar -->
+    <div class="nav-bar">
+        <a href="#">Home</a>
+        <a id="about-link">About</a>
+        <a href="https://github.com/rajeev210906/">Contact</a>
+    </div>
+
+    <!-- Add modal window for About feature -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>About ShayraAi_Translator</h2>
+            <p>Shayra Ai is a language translation model Made By Ranjan Coder</p>
+            <p>Its data-set is based on facebook/m2m100_418M model</p>
+            <button id="github-button">Project GitHub</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>ShayraAi Translation Model</h1>
+        <form action="" method="post">
+            <textarea class="input-field" id="input_text" name="input_text" placeholder="Enter text to translate"></textarea>
+            <br>
+            <select class="select-field" id="target_lang" name="target_lang">
+                {% for lang_code, lang_name in lang_map.items() %}
+                <option value="{{ lang_code }}">{{ lang_name }} ({{ lang_code }})</option>
+                {% endfor %}
+            </select>
+            <br><br>
+            <input class="translate-button" type="submit" value="Translate"><br>
+        </form>
+        {% if translated_text %}
+        <div class="translated-text">
+            <h2>Translated By Shayra Ai:</h2>
+            <p>{{ translated_text }} ({{ target_lang }})</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        // Get the modal window and the link that opens it
+        var modal = document.getElementById("myModal");
+        var aboutLink = document.getElementById("about-link");
+
+        // Get the close button and the GitHub button
+        var closeButton = document.getElementsByClassName("close")[0];
+        var githubButton = document.getElementById("github-button");
+
+        // Add event listeners to open and close the modal window
+        aboutLink.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        closeButton.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Add event listener to open GitHub page
+        githubButton.onclick = function() {
+            window.open("https://github.com/rajeev210906/ShayraAiTranslator.git", "_blank");
+        }
+    </script>
+</body>
+</html>
